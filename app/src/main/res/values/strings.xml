@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">HangmanGame</string>
+    <string name="game_name">Hangman</string>
+    <string name="play_game_button">Play game</string>
+    <string name="about_button">About</string>
+    <string name="programed_by">Programed by Jens Sellén</string>
+    <string name="trys_left">tries left</string>
+    <string name="guess_placeholder">Guess a character</string>
+    <string name="guess">Guess!</string>
+    <string name="the_word_was">The word was:</string>
+    <string name="tries_left">Tries left:</string>
+    <string name="back_to_main_menu">Back to main menu</string>
+    <string name="won_text">You won!</string>
+    <string name="lost_text">You lost!</string>
+    <string name="one_char_toast">You can only guess one character!</string>
+    <string name="only_alph_toast">You can only guess alphabetic characters!</string>
+    <string name="guessed_toast">Already guessed!</string>
+    <string name="hello_word">HELLO</string>
+    <string name="app_word">APPLICATION</string>
+    <string name="welcome_word">WELCOME</string>
+    <string name="tiger_word">TIGER</string>
+    <string name="wrong_guesses">Wrong guesses:</string>
+    <string name="no_guess_toast">No guess!</string>
+    <string name="continue_button">Continue</string>
+    <string name="final_word">FINAL</string>
+</resources>

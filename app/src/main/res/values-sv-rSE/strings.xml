@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HängaGubbeSpel</string>
+    <string name="game_name">Hänga gubbe</string>
+    <string name="play_game_button">Spela spel</string>
+    <string name="about_button">Om</string>
+    <string name="programed_by">Programmerad av Jens Sellén</string>
+    <string name="trys_left">försök kvar</string>
+    <string name="guess_placeholder">Gissa på en bokstav</string>
+    <string name="guess">Gissa!</string>
+    <string name="the_word_was">Ordet var:</string>
+    <string name="tries_left">Försök kvar:</string>
+    <string name="back_to_main_menu">Tillbaka till huvudmenyn</string>
+    <string name="won_text">Du vann!</string>
+    <string name="lost_text">Du förlorade!</string>
+    <string name="one_char_toast">Du kan bara gissa på en bokstav!</string>
+    <string name="only_alph_toast">Du kan bara gissa på bokstäver!</string>
+    <string name="guessed_toast">Redan gissad!</string>
+    <string name="hello_word">HEJ</string>
+    <string name="app_word">APPLIKATION</string>
+    <string name="welcome_word">VÄLKOMMEN</string>
+    <string name="tiger_word">TIGER</string>
+    <string name="wrong_guesses">Fel gissningar:</string>
+    <string name="no_guess_toast">Ingen gissning!</string>
+    <string name="continue_button">Fortsätt</string>
+    <string name="final_word">SISTA</string>
+</resources>
