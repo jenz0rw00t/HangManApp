@@ -33,8 +33,6 @@ public class GameActivity extends AppCompatActivity {
     private TextView wordTextView;
     // Hangman bilden som visas
     private ImageView hangImg;
-    // Alla bilder
-    private List<Drawable> hangImges = new ArrayList<>();
     //ArrayList med ord
     Set<String> gameWords = new HashSet<>();
     HangmanGame game;
@@ -54,19 +52,6 @@ public class GameActivity extends AppCompatActivity {
         wordTextView = findViewById(R.id.wordText);
         hangImg = findViewById(R.id.hangmanImage);
         context = getApplicationContext();
-
-        //preload images
-        hangImges.add(getResources().getDrawable(R.drawable.hang0));
-        hangImges.add(getResources().getDrawable(R.drawable.hang1));
-        hangImges.add(getResources().getDrawable(R.drawable.hang2));
-        hangImges.add(getResources().getDrawable(R.drawable.hang3));
-        hangImges.add(getResources().getDrawable(R.drawable.hang4));
-        hangImges.add(getResources().getDrawable(R.drawable.hang5));
-        hangImges.add(getResources().getDrawable(R.drawable.hang6));
-        hangImges.add(getResources().getDrawable(R.drawable.hang7));
-        hangImges.add(getResources().getDrawable(R.drawable.hang8));
-        hangImges.add(getResources().getDrawable(R.drawable.hang9));
-        hangImges.add(getResources().getDrawable(R.drawable.hang10));
 
         //laddar in ord på listan
         gameWords.add(getString(R.string.hello_word));
@@ -168,9 +153,13 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setHangImg(){
-        //Drawable drawable = hangImges.get(game.getTriesLeft());
-        //hangImg.setImageDrawable(drawable);
-        Picasso.get().load("https://jenz0rw00t.github.io/HangManApp/app/src/main/res/drawable/hang0.gif").error(R.mipmap.ic_launcher_round).into(hangImg);
+        Picasso.get()
+                .load("https://jenz0rw00t.github.io/HangManApp/app/src/main/res/drawable/hang"+game.getTriesLeft()+".png")
+                .placeholder(R.drawable.hang10)
+                .fit()
+                .centerInside()
+                .error(R.mipmap.ic_launcher_round)
+                .into(hangImg);
     }
 
     private void hasWonOrLost() {

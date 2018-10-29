@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Pink" parent="AppTheme" >
+        <item name="colorPrimary">#ffcdd2</item>
+        <item name="colorPrimaryDark">#cb9ca1</item>
+        <item name="colorAccent">#a5d6a7</item>
+    </style>
+
 </resources>
