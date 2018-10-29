@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -166,8 +168,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setHangImg(){
-        Drawable drawable = hangImges.get(game.getTriesLeft());
-        hangImg.setImageDrawable(drawable);
+        //Drawable drawable = hangImges.get(game.getTriesLeft());
+        //hangImg.setImageDrawable(drawable);
+        Picasso.get().load("https://jenz0rw00t.github.io/HangManApp/app/src/main/res/drawable/hang0.gif").error(R.mipmap.ic_launcher_round).into(hangImg);
     }
 
     private void hasWonOrLost() {
