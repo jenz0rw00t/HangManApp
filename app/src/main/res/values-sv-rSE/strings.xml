@@ -24,4 +24,5 @@
     <string name="no_guess_toast">Ingen gissning!</string>
     <string name="continue_button">Fortsätt</string>
     <string name="final_word">SISTA</string>
+    <string name="settings_button">Inställningar</string>
 </resources>

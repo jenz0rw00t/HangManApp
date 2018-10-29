@@ -3,6 +3,7 @@ package com.example.jenssellen.hangmangame;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,13 +38,23 @@ public class GameActivity extends AppCompatActivity {
     Set<String> gameWords = new HashSet<>();
     HangmanGame game;
 
+    private String theme;
+
     private Context context;
+
     private SharedPreferences sharedPreferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences("gameDetails", MODE_PRIVATE);
+        theme = sharedPreferences.getString("THEME", "regular");
+        if (theme.equals("regular")){
+            setTheme(R.style.Pink);
+        } else if (theme.equals("halloween")){
+            setTheme(R.style.Halloween);
+        }
         setContentView(R.layout.activity_game);
 
         guessInput = findViewById(R.id.guessInput);
@@ -58,8 +69,6 @@ public class GameActivity extends AppCompatActivity {
         gameWords.add(getString(R.string.app_word));
         gameWords.add(getString(R.string.welcome_word));
         gameWords.add(getString(R.string.tiger_word));
-
-        sharedPreferences = getSharedPreferences("gameDetails", MODE_PRIVATE);
 
         if(sharedPreferences.getBoolean("ACTIVE_GAME", false)){
             Set<String> allWordsSet = sharedPreferences.getStringSet("ALL_WORDS_SET",new HashSet<String>());
@@ -99,7 +108,7 @@ public class GameActivity extends AppCompatActivity {
         editor.putBoolean("ACTIVE_GAME", game.isActiveGame());
         editor.putStringSet("GUESSES_SET", game.getGuessesList());
         editor.putStringSet("ALL_WORDS_SET", game.getAllWordsSet());
-        editor.commit();
+        editor.apply();
     }
 
     public void guessButtonClicked(View view) {
@@ -154,7 +163,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void setHangImg(){
         Picasso.get()
-                .load("https://jenz0rw00t.github.io/HangManApp/app/src/main/res/drawable/hang"+game.getTriesLeft()+".png")
+                .load("https://jenz0rw00t.github.io/HangManApp/app/src/main/res/"+theme+"/hang"+game.getTriesLeft()+".png")
                 .placeholder(R.drawable.hang10)
                 .fit()
                 .centerInside()

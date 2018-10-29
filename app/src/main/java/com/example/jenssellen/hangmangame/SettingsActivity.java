@@ -3,8 +3,9 @@ package com.example.jenssellen.hangmangame;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
-public class AboutActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
@@ -18,6 +19,16 @@ public class AboutActivity extends AppCompatActivity {
         } else if (theme.equals("halloween")){
             setTheme(R.style.ReverseHalloween);
         }
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_settings);
+    }
+
+    public void normalThemeButtonClicked(View view) {
+        sharedPreferences.edit().putString("THEME", "regular").apply();
+        recreate();
+    }
+
+    public void halloweenThemeButtonClicked(View view) {
+        sharedPreferences.edit().putString("THEME", "halloween").apply();
+        recreate();
     }
 }
