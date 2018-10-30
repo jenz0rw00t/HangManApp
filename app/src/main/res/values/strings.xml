@@ -22,6 +22,8 @@
     <string name="wrong_guesses">Wrong guesses:</string>
     <string name="no_guess_toast">No guess!</string>
     <string name="continue_button">Continue</string>
-    <string name="final_word">FINAL</string>
     <string name="settings_button">Settings</string>
+    <string name="choose_theme">Choose theme:</string>
+    <string name="normal">Normal</string>
+    <string name="halloween">Halloween</string>
 </resources>

@@ -14,9 +14,9 @@ public class AboutActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("gameDetails", MODE_PRIVATE);
         String theme = sharedPreferences.getString("THEME", "regular");
         if (theme.equals("regular")){
-            setTheme(R.style.ReversePink);
+            setTheme(R.style.Pink);
         } else if (theme.equals("halloween")){
-            setTheme(R.style.ReverseHalloween);
+            setTheme(R.style.Halloween);
         }
         setContentView(R.layout.activity_about);
     }

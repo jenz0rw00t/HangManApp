@@ -23,6 +23,8 @@
     <string name="wrong_guesses">Fel gissningar:</string>
     <string name="no_guess_toast">Ingen gissning!</string>
     <string name="continue_button">Fortsätt</string>
-    <string name="final_word">SISTA</string>
     <string name="settings_button">Inställningar</string>
+    <string name="choose_theme">Välj tema:</string>
+    <string name="normal">Normalt</string>
+    <string name="halloween">Halloween</string>
 </resources>

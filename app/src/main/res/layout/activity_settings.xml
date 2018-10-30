@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Choose theme:"
+        android:text="@string/choose_theme"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="normalThemeButtonClicked"
-        android:text="Normal"
+        android:text="@string/normal"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +35,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:onClick="halloweenThemeButtonClicked"
-        android:text="Halloween"
+        android:text="@string/halloween"
         app:layout_constraintStart_toEndOf="@+id/normalThemeButton"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -13,6 +13,7 @@
         <item name="colorPrimaryDark">#cb9ca1</item>
         <item name="colorAccent">#a5d6a7</item>
         <item name="colorButtonNormal">#a5d6a7</item>
+        <item name="android:windowBackground">@color/pinkBackground</item>
     </style>
 
     <style name="ReversePink" parent="AppTheme" >
@@ -20,6 +21,7 @@
         <item name="colorPrimaryDark">#75a478</item>
         <item name="colorAccent">#ffcdd2</item>
         <item name="colorButtonNormal">#ffcdd2</item>
+        <item name="android:windowBackground">@color/greenBackground</item>
     </style>
 
     <style name="Halloween" parent="AppTheme" >
@@ -27,6 +29,7 @@
         <item name="colorPrimaryDark">#ff9800</item>
         <item name="colorAccent">#df78ef</item>
         <item name="colorButtonNormal">#df78ef</item>
+        <item name="android:windowBackground">@color/orangeBackground</item>
     </style>
 
     <style name="ReverseHalloween" parent="AppTheme" >
@@ -34,6 +37,7 @@
         <item name="colorPrimaryDark">#ab47bc</item>
         <item name="colorAccent">#ffc947</item>
         <item name="colorButtonNormal">#ffc947</item>
+        <item name="android:windowBackground">@color/purpleBackground</item>
     </style>
 
 </resources>
