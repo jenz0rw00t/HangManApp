@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -24,7 +15,7 @@
         android:text="@string/choose_theme"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/normalThemeButton"
@@ -35,7 +26,7 @@
         android:onClick="normalThemeButtonClicked"
         android:text="@string/normal"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/halloweenThemeButton"
@@ -46,6 +37,6 @@
         android:onClick="halloweenThemeButtonClicked"
         android:text="@string/halloween"
         app:layout_constraintStart_toEndOf="@+id/normalThemeButton"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

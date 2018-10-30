@@ -14,16 +14,26 @@
         <activity
             android:name=".MenuActivity"
             android:launchMode="singleTask">
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:parentActivityName=".MenuActivity" />
+        <activity
+            android:name=".GameActivity"
+            android:parentActivityName=".MenuActivity" />
+        <activity
+            android:name=".ResultsActivity"
+            android:parentActivityName=".MenuActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName=".GameActivity" />
+        <activity android:name=".MainFragmentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AboutActivity" android:parentActivityName=".MenuActivity"/>
-        <activity android:name=".GameActivity" android:parentActivityName=".MenuActivity"/>
-        <activity android:name=".ResultsActivity" android:parentActivityName=".MenuActivity"/>
-        <activity android:name=".SettingsActivity" android:parentActivityName=".GameActivity"></activity>
     </application>
 
 </manifest>
