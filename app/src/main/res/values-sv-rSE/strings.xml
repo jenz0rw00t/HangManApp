@@ -27,4 +27,6 @@
     <string name="choose_theme">Välj tema:</string>
     <string name="normal">Normalt</string>
     <string name="halloween">Halloween</string>
+    <string name="exit">Avsluta</string>
+    <string name="new_word">Nytt ord</string>
 </resources>

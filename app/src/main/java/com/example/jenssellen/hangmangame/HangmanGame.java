@@ -78,6 +78,9 @@ public class HangmanGame {
         return true;
     }
 
+    public void clearGuesses(){
+        guessesList.clear();
+    }
 
     public boolean hasUsedLetter(char guess){
         if(guessesList != null){

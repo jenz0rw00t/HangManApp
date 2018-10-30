@@ -26,4 +26,6 @@
     <string name="choose_theme">Choose theme:</string>
     <string name="normal">Normal</string>
     <string name="halloween">Halloween</string>
+    <string name="exit">Exit</string>
+    <string name="new_word">New word</string>
 </resources>

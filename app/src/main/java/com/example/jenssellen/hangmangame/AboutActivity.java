@@ -19,5 +19,6 @@ public class AboutActivity extends AppCompatActivity {
             setTheme(R.style.Halloween);
         }
         setContentView(R.layout.activity_about);
+
     }
 }

@@ -1,14 +1,14 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Pink" parent="AppTheme" >
+    <style name="Pink" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="colorPrimary">#ffcdd2</item>
         <item name="colorPrimaryDark">#cb9ca1</item>
         <item name="colorAccent">#a5d6a7</item>
@@ -16,7 +16,7 @@
         <item name="android:windowBackground">@color/pinkBackground</item>
     </style>
 
-    <style name="ReversePink" parent="AppTheme" >
+    <style name="ReversePink" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="colorPrimary">#a5d6a7</item>
         <item name="colorPrimaryDark">#75a478</item>
         <item name="colorAccent">#ffcdd2</item>
@@ -24,7 +24,7 @@
         <item name="android:windowBackground">@color/greenBackground</item>
     </style>
 
-    <style name="Halloween" parent="AppTheme" >
+    <style name="Halloween" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="colorPrimary">#ffc947</item>
         <item name="colorPrimaryDark">#ff9800</item>
         <item name="colorAccent">#df78ef</item>
@@ -32,7 +32,7 @@
         <item name="android:windowBackground">@color/orangeBackground</item>
     </style>
 
-    <style name="ReverseHalloween" parent="AppTheme" >
+    <style name="ReverseHalloween" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="colorPrimary">#df78ef</item>
         <item name="colorPrimaryDark">#ab47bc</item>
         <item name="colorAccent">#ffc947</item>

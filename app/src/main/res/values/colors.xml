@@ -7,4 +7,5 @@
     <color name="greenBackground">#edf6ed</color>
     <color name="orangeBackground">#fffbf3</color>
     <color name="purpleBackground">#f8e4fb</color>
+    <color name="blackIcons">#000</color>
 </resources>
