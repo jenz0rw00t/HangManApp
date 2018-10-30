@@ -1,9 +1,13 @@
 package com.example.jenssellen.hangmangame;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -42,6 +47,7 @@ public class GameFragment extends Fragment {
     Set<String> gameWords = new HashSet<>();
     HangmanGame game;
     SharedPreferences sharedPreferences;
+    private Context context;
     String theme = "regular";
 
     @Override
@@ -54,6 +60,8 @@ public class GameFragment extends Fragment {
         guessedCharsView = v.findViewById(R.id.guessedChars);
         wordTextView = v.findViewById(R.id.wordText);
         hangImg = v.findViewById(R.id.hangmanImage);
+
+        context = getContext();
 
         gameWords.add(getString(R.string.hello_word));
         gameWords.add(getString(R.string.app_word));
@@ -87,9 +95,41 @@ public class GameFragment extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getActivity().findViewById(R.id.guessButton).setOnClickListener(this::guessButtonClicked);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         inflater.inflate(R.menu.game_bar, menu);
+    }
+
+    public void guessButtonClicked(View view) {
+        if(guessInput.getText().toString().length()<= 0){
+            noCharToast();
+        } else {
+            char guess = guessInput.getText().toString().toUpperCase().charAt(0);
+            if(guessInput.getText().toString().length()>1) {
+                moreCharToast();
+            } else if (!Character.isAlphabetic(guess)){
+                notAlphabeticToast();
+            } else {
+                if (!game.hasUsedLetter(guess)) {
+                    game.guess(guess);
+                    hasWonOrLost();
+                    triesLeftNumberView.setText(String.valueOf(game.getTriesLeft()));
+                    guessedCharsView.setText(game.getWrongGuesses());
+                    wordTextView.setText(game.getHiddenWord());
+                    setHangImg();
+                    guessInput.setText("");
+                } else {
+                    guessedToast();
+                    guessInput.setText("");
+                }
+            }
+        }
     }
 
     private void setHangImg(){
@@ -100,5 +140,35 @@ public class GameFragment extends Fragment {
                 .centerInside()
                 .error(R.mipmap.ic_launcher_round)
                 .into(hangImg);
+    }
+
+    private void hasWonOrLost() {
+        if (game.hasWon() || game.hasLost()) {
+            //TODO what to do when won or lost
+        }
+    }
+
+    private void guessedToast() {
+        Toast toast = Toast.makeText(context, R.string.guessed_toast, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP, 0, 250);
+        toast.show();
+    }
+
+    private void notAlphabeticToast() {
+        Toast toast = Toast.makeText(context, getString(R.string.only_alph_toast), Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP, 0, 250);
+        toast.show();
+    }
+
+    private void moreCharToast() {
+        Toast toast = Toast.makeText(context, getString(R.string.one_char_toast), Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP, 0, 250);
+        toast.show();
+    }
+
+    private void noCharToast() {
+        Toast toast = Toast.makeText(context, getString(R.string.no_guess_toast), Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP, 0, 250);
+        toast.show();
     }
 }
