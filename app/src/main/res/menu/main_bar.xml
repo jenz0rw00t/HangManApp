@@ -4,17 +4,17 @@
 
     <item
         android:id="@+id/playGame"
-        android:icon="@android:drawable/ic_media_play"
+        android:icon="@drawable/ic_game"
         android:title="@string/play_game_button"
         app:showAsAction="always" />
     <item
         android:id="@+id/settings"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/ic_settings"
         android:title="@string/settings_button"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/about"
-        android:icon="@android:drawable/ic_menu_info_details"
+        android:icon="@drawable/ic_info"
         android:title="@string/about_button"
         app:showAsAction="ifRoom" />
 </menu>

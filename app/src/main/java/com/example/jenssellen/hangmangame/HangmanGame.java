@@ -14,7 +14,7 @@ public class HangmanGame {
     private String wrongGuesses = "";
     private boolean[] visible;
     private Set<String> guessesList = new HashSet<>();
-    private boolean activeGame = false;
+    private boolean activeGame;
 
     public HangmanGame(Set<String> allWordsSet){
         allWords = new ArrayList<>(allWordsSet);
@@ -42,8 +42,7 @@ public class HangmanGame {
     }
 
     public Set<String> getAllWordsSet() {
-        Set<String> allWorldsSet = new HashSet<>(allWords);
-        return allWorldsSet;
+        return new HashSet<>(allWords);
     }
 
     public void guess(char guess){
@@ -62,11 +61,7 @@ public class HangmanGame {
     }
 
     public boolean hasLost(){
-        if (triesLeft<=0){
-            activeGame = false;
-            return true;
-        }
-        return false;
+        return triesLeft <= 0;
     }
 
     public boolean hasWon() {
@@ -74,7 +69,6 @@ public class HangmanGame {
             if (!b)
                 return false;
         }
-        activeGame = false;
         return true;
     }
 
@@ -109,6 +103,9 @@ public class HangmanGame {
         return text;
     }
 
+    public void setActiveGame(boolean activeGame) {
+        this.activeGame = activeGame;
+    }
 
     public String getTheWord() {
         return theWord;

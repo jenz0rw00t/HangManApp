@@ -2,7 +2,6 @@ package com.example.jenssellen.hangmangame;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -19,9 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,28 +30,20 @@ public class GameFragment extends Fragment {
         // Required empty public constructor
     }
 
-    // Användarens gissning
     private EditText guessInput;
-    // Nummret av försök kvar
     private TextView triesLeftNumberView;
-    // Bokstäver som användaren gissat
     private TextView guessedCharsView;
-    // Ordet som visas
     private TextView wordTextView;
-    // Hangman bilden som visas
     private ImageView hangImg;
-    //ArrayList med ord
-    Set<String> gameWords = new HashSet<>();
-    HangmanGame game;
-    SharedPreferences sharedPreferences;
+    private HangmanGame game;
+    private SharedPreferences sharedPreferences;
     private Context context;
-    String theme = "regular";
+    private String theme = "regular";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
-        View v = inflater.inflate(R.layout.activity_game, container, false);
+        View v = inflater.inflate(R.layout.game_fragment, container, false);
         guessInput = v.findViewById(R.id.guessInput);
         triesLeftNumberView = v.findViewById(R.id.triesLeftNumber);
         guessedCharsView = v.findViewById(R.id.guessedChars);
@@ -63,26 +52,10 @@ public class GameFragment extends Fragment {
 
         context = getContext();
 
-        gameWords.add(getString(R.string.hello_word));
-        gameWords.add(getString(R.string.app_word));
-        gameWords.add(getString(R.string.welcome_word));
-        gameWords.add(getString(R.string.tiger_word));
+        sharedPreferences = this.getActivity().getSharedPreferences("gameDetails", Context.MODE_PRIVATE);
+        theme = sharedPreferences.getString("THEME", "regular");
 
-        sharedPreferences = this.getActivity().getSharedPreferences("gameDetails", getContext().MODE_PRIVATE);
-
-        if(sharedPreferences.getBoolean("ACTIVE_GAME", false)){
-            Set<String> allWordsSet = sharedPreferences.getStringSet("ALL_WORDS_SET",new HashSet<String>());
-            Set<String> guessesSet = sharedPreferences.getStringSet("GUESSES_SET",new HashSet<String>());
-            String theWord = sharedPreferences.getString("THE_WORD", "");
-            game = new HangmanGame(allWordsSet , theWord , guessesSet);
-        } else {
-            Set<String> allWordsSet = sharedPreferences.getStringSet("ALL_WORDS_SET",new HashSet<String>());
-            if (allWordsSet.isEmpty()) {
-                game = new HangmanGame(gameWords);
-            } else {
-                game = new HangmanGame(allWordsSet);
-            }
-        }
+        game = ((MainFragmentActivity)getActivity()).getGame();
 
         wordTextView.setText(game.getHiddenWord());
         triesLeftNumberView.setText(String.valueOf(game.getTriesLeft()));
@@ -97,6 +70,7 @@ public class GameFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
         getActivity().findViewById(R.id.guessButton).setOnClickListener(this::guessButtonClicked);
     }
 
@@ -106,15 +80,65 @@ public class GameFragment extends Fragment {
         inflater.inflate(R.menu.game_bar, menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.newWord:
+                game.clearGuesses();
+                if (!game.getAllWordsSet().isEmpty()){
+                    game.newWord();
+                } else {
+                    game.setActiveGame(false);
+                    SharedPreferences setting = this.getActivity().getSharedPreferences("gameDetails", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = setting.edit();
+                    editor.clear();
+                    editor.putBoolean("ACTIVE_GAME", game.isActiveGame());
+                    editor.putString("THEME", theme).apply();
+                    game = ((MainFragmentActivity)getActivity()).getGame();
+                }
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .detach(GameFragment.this)
+                        .attach(GameFragment.this)
+                        .commit();
+                return(true);
+            case R.id.about:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, new AboutFragment())
+                        .addToBackStack(null)
+                        .commit();
+                return(true);
+            case R.id.settings:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, new SettingsFragment())
+                        .addToBackStack(null)
+                        .commit();
+                return(true);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        SharedPreferences setting = this.getActivity().getSharedPreferences("gameDetails", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = setting.edit();
+        editor.putString("THE_WORD", game.getTheWord());
+        editor.putBoolean("ACTIVE_GAME", game.isActiveGame());
+        editor.putStringSet("GUESSES_SET", game.getGuessesList());
+        editor.putStringSet("ALL_WORDS_SET", game.getAllWordsSet());
+        editor.putString("THEME", theme);
+        editor.apply();
+    }
+
     public void guessButtonClicked(View view) {
         if(guessInput.getText().toString().length()<= 0){
-            noCharToast();
+            showToast(getString(R.string.one_char_toast));
         } else {
             char guess = guessInput.getText().toString().toUpperCase().charAt(0);
             if(guessInput.getText().toString().length()>1) {
-                moreCharToast();
+                showToast(getString(R.string.one_char_toast));
             } else if (!Character.isAlphabetic(guess)){
-                notAlphabeticToast();
+                showToast(getString(R.string.only_alph_toast));
             } else {
                 if (!game.hasUsedLetter(guess)) {
                     game.guess(guess);
@@ -125,7 +149,7 @@ public class GameFragment extends Fragment {
                     setHangImg();
                     guessInput.setText("");
                 } else {
-                    guessedToast();
+                    showToast(getString(R.string.guessed_toast));
                     guessInput.setText("");
                 }
             }
@@ -144,31 +168,17 @@ public class GameFragment extends Fragment {
 
     private void hasWonOrLost() {
         if (game.hasWon() || game.hasLost()) {
-            //TODO what to do when won or lost
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, new ResultsFragment())
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 
-    private void guessedToast() {
-        Toast toast = Toast.makeText(context, R.string.guessed_toast, Toast.LENGTH_SHORT);
+    private void showToast(String toastText){
+        Toast toast = Toast.makeText(context, toastText, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.TOP, 0, 250);
         toast.show();
     }
 
-    private void notAlphabeticToast() {
-        Toast toast = Toast.makeText(context, getString(R.string.only_alph_toast), Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.TOP, 0, 250);
-        toast.show();
-    }
-
-    private void moreCharToast() {
-        Toast toast = Toast.makeText(context, getString(R.string.one_char_toast), Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.TOP, 0, 250);
-        toast.show();
-    }
-
-    private void noCharToast() {
-        Toast toast = Toast.makeText(context, getString(R.string.no_guess_toast), Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.TOP, 0, 250);
-        toast.show();
-    }
 }

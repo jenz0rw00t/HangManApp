@@ -4,17 +4,17 @@
 
     <item
         android:id="@+id/newWord"
-        android:icon="@android:drawable/ic_menu_revert"
+        android:icon="@drawable/ic_new_word"
         android:title="@string/new_word"
         app:showAsAction="always" />
     <item
         android:id="@+id/settings"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/ic_settings"
         android:title="@string/settings_button"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/about"
-        android:icon="@android:drawable/ic_menu_info_details"
+        android:icon="@drawable/ic_info"
         android:title="@string/about_button"
         app:showAsAction="ifRoom" />
 </menu>

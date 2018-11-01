@@ -11,22 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity
-            android:name=".MenuActivity"
-            android:launchMode="singleTask">
-        </activity>
-        <activity
-            android:name=".AboutActivity"
-            android:parentActivityName=".MenuActivity" />
-        <activity
-            android:name=".GameActivity"
-            android:parentActivityName=".MenuActivity" />
-        <activity
-            android:name=".ResultsActivity"
-            android:parentActivityName=".MenuActivity" />
-        <activity
-            android:name=".SettingsActivity"
-            android:parentActivityName=".GameActivity" />
         <activity android:name=".MainFragmentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
