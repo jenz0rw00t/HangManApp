@@ -70,11 +70,15 @@ public class ResultsFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         inflater.inflate(R.menu.main_bar, menu);
+        ((MainFragmentActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case android.R.id.home:
+                getActivity().getSupportFragmentManager().popBackStack("MENU", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                return (true);
             case R.id.about:
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameLayout, new AboutFragment())

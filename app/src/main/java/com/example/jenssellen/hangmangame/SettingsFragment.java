@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -55,6 +56,9 @@ public class SettingsFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case android.R.id.home:
+                getActivity().getSupportFragmentManager().popBackStack("MENU", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                return (true);
             case R.id.about:
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameLayout, new AboutFragment()).addToBackStack(null).commit();
@@ -70,6 +74,8 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.settings_bar, menu);
+        inflater.inflate(R.menu.main_bar, menu);
+        menu.removeItem(R.id.settings);
+        ((MainFragmentActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
