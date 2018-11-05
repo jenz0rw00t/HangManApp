@@ -28,4 +28,5 @@
     <string name="halloween">Halloween</string>
     <string name="exit">Avsluta</string>
     <string name="new_word">Nytt ord</string>
+    <string name="new_word_toast">Nytt ord skapat!</string>
 </resources>

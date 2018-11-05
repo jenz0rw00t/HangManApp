@@ -22,10 +22,6 @@ public class HangmanGame {
         newWord();
     }
 
-    public Set<String> getGuessesList() {
-        return guessesList;
-    }
-
     public HangmanGame (Set<String> allWordsSet, String theWord, Set<String> guessesList){
         allWords = new ArrayList<>(allWordsSet);
         this.theWord = theWord;
@@ -43,6 +39,10 @@ public class HangmanGame {
 
     public Set<String> getAllWordsSet() {
         return new HashSet<>(allWords);
+    }
+
+    public Set<String> getGuessesList() {
+        return guessesList;
     }
 
     public void guess(char guess){

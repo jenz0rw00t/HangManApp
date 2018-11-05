@@ -65,5 +65,9 @@ public class MainFragmentActivity extends AppCompatActivity {
         return game;
     }
 
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        getSupportFragmentManager().popBackStack("MENU", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        return true;
+    }
 }

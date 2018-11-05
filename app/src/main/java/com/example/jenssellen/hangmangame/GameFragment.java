@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.ActionBar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -86,9 +85,6 @@ public class GameFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case android.R.id.home:
-                getActivity().getSupportFragmentManager().popBackStack("MENU", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                return (true);
             case R.id.newWord:
                 game.clearGuesses();
                 if (!game.getAllWordsSet().isEmpty()){
@@ -106,6 +102,7 @@ public class GameFragment extends Fragment {
                         .detach(GameFragment.this)
                         .attach(GameFragment.this)
                         .commit();
+                showToast(getString(R.string.new_word_toast));
                 return(true);
             case R.id.about:
                 getActivity().getSupportFragmentManager().beginTransaction()

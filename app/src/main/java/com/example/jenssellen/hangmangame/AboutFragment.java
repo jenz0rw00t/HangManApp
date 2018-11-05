@@ -46,9 +46,6 @@ public class AboutFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case android.R.id.home:
-                getActivity().getSupportFragmentManager().popBackStack("MENU", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                return (true);
             case R.id.playGame:
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameLayout, new GameFragment())

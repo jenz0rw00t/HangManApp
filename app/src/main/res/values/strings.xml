@@ -27,4 +27,5 @@
     <string name="halloween">Halloween</string>
     <string name="exit">Exit</string>
     <string name="new_word">New word</string>
+    <string name="new_word_toast">New word created!</string>
 </resources>
