@@ -140,7 +140,7 @@ public class GameFragment extends Fragment {
 
     public void guessButtonClicked(View view) {
         if(guessInput.getText().toString().length()<= 0){
-            showToast(getString(R.string.one_char_toast));
+            showToast(getString(R.string.no_guess_toast));
         } else {
             char guess = guessInput.getText().toString().toUpperCase().charAt(0);
             if(guessInput.getText().toString().length()>1) {

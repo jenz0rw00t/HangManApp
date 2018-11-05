@@ -5,7 +5,6 @@
     <string name="play_game_button">Spela spel</string>
     <string name="about_button">Om</string>
     <string name="programed_by">Programmerad av Jens Sellén</string>
-    <string name="trys_left">försök kvar</string>
     <string name="guess_placeholder">Gissa på en bokstav</string>
     <string name="guess">Gissa!</string>
     <string name="the_word_was">Ordet var:</string>

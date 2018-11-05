@@ -46,13 +46,12 @@ public class HangmanGame {
     }
 
     public void guess(char guess){
+        guessesList.add(Character.toString(guess));
         int indexOfGuess = theWord.indexOf(guess);
         if (indexOfGuess<0) {
             triesLeft--;
             wrongGuesses+=guess+", ";
-            guessesList.add(Character.toString(guess));
         } else {
-            guessesList.add(Character.toString(guess));
             while (indexOfGuess>=0){
                 visible[indexOfGuess] = true;
                 indexOfGuess=theWord.indexOf(guess, indexOfGuess+1);

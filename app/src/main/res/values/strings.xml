@@ -4,7 +4,6 @@
     <string name="play_game_button">Play game</string>
     <string name="about_button">About</string>
     <string name="programed_by">Programed by Jens Sellén</string>
-    <string name="trys_left">tries left</string>
     <string name="guess_placeholder">Guess a character</string>
     <string name="guess">Guess!</string>
     <string name="the_word_was">The word was:</string>
